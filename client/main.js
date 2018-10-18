@@ -1,22 +1,17 @@
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Meteor } from 'meteor/meteor';
+import { Tracker } from 'meteor/tracker';
 
-import './main.html';
+import App from '../imports/ui/App';
+import { Students } from '../imports/api/students';
 
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
-});
-
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
-});
-
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
+Meteor.startup(() => {
+  Tracker.autorun(() => {
+    let students = Students.find().fetch();
+    console.log(students);
+    let title = 'Student Portal';
+    let subtitle = 'Created By Robin';
+    ReactDOM.render(<App title={title} subtitle={subtitle} students={students}/>, document.getElementById('app'));
+  });
 });

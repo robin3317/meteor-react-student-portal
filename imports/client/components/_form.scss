@@ -1,0 +1,14 @@
+.list-style {
+  list-style-type: none;
+}
+
+.form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form__input {
+  border: 1px solid #e8e8e8;
+  padding: .5rem 1.3rem;
+  margin: .5rem 0;
+}

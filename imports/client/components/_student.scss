@@ -1,0 +1,9 @@
+.student {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.student__actions {
+  flex-shrink: 0;
+}
